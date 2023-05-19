@@ -19,7 +19,7 @@ services:
   db:
     image: mysql:5.7.38
     ports:
-      - 3306
+      - 8889:3306
 
     volumes:
       - ./amsdb.cnf:/etc/mysql/conf.d/amsdb.cnf
