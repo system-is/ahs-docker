@@ -7,7 +7,7 @@ services:
       - 8888:8888
 
     environment:
-      DB_HOST: mysql
+      DB_HOST: db
       DB_PORT: 3306
       DB_DBNAME: ahs
       DB_USER: ahs
@@ -16,13 +16,20 @@ services:
     depends_on:
       - mysql
 
-  mysql:
+  db:
     image: mysql:5.7.38
     ports:
       - 3306
+
+    volumes:
+      - ./amsdb.cnf:/etc/mysql/conf.d/amsdb.cnf
+      - mysql:/var/lib/mysql
 
     environment:
       MYSQL_ROOT_PASSWORD: rootPassword
       MYSQL_DATABASE: ahs
       MYSQL_USER: ahs
-      DB_PASS: ahsPassword
+      MYSQL_PASSWORD: ahsPassword
+
+volumes:
+  mysql:
