@@ -21,7 +21,10 @@ DB_USER: ahs
 DB_PASS: ahsPassword
 ```
 
-2. respect `amsdb.cnf` configuration 
+2. respect mysql setup
+
+- `/mysql/amsdb.cnf`
+- `/mysql/init.sql`
 
 ### Run
 
