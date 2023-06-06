@@ -6,6 +6,10 @@ services:
     ports:
       - 8888:8888
 
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+
     environment:
       DB_HOST: db
       DB_PORT: 3306
@@ -14,7 +18,7 @@ services:
       DB_PASS: ahsPassword
 
     depends_on:
-      - mysql
+      - db
 
   db:
     image: mysql:5.7.38
@@ -25,6 +29,8 @@ services:
       - mysql:/var/lib/mysql
       - ./mysql/amsdb.cnf:/etc/mysql/conf.d/amsdb.cnf
       - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
 
     environment:
       MYSQL_ROOT_PASSWORD: rootPassword
